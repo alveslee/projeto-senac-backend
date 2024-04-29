@@ -1,5 +1,5 @@
 import express from 'express';
-import { getUsers, addUser, updateUser, deleteUser, getUsersById, getUsersByNome, getReceitaByTitulo, addReceita, updateReceita, deleteReceita } from '../controllers/userController.js';
+import { getUsers, addUser, updateUser, deleteUser, getUsersById, getUsersByNome } from '../controllers/userController.js';
 
 const router = express.Router();
 
@@ -20,8 +20,5 @@ router.get("/", (req, res) => {
 router.post("/", addUser);
 router.put("/", updateUser);
 router.delete("/", deleteUser);
-router.post("/", addReceita);
-router.put("/", updateReceita);
-router.delete("/", deleteReceita);
 
 export default router;
