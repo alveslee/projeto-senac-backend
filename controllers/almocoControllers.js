@@ -1,7 +1,7 @@
 import { db } from '../database/db.js';
 
 export const getAlmoco = (_, res) => {
-    const sql = "select * from almoco";
+    const sql = "select * from receitas where idCategoria = 1";
 
     db.query(sql, (err, data) => {
         if(err){
@@ -15,7 +15,7 @@ export const getAlmoco = (_, res) => {
 }
 
 export const getAlmocoImgs = (_, res) => {
-    const sql = "select img from almoco";
+    const sql = "select * from receitas where idCategoria = 1";
 
     db.query(sql, (err, data) => {
         if(err){
@@ -31,7 +31,7 @@ export const getAlmocoImgs = (_, res) => {
 export const getAlmocosById = (req, res) => {
     const { id } = req.query;
     
-    const sql = "select * from almoco where id = ?";
+    const sql = "select * from receitas where id = ? and idCategoria = 1";
 
     db.query(sql, [id], (err, data) => {
         if(err){
@@ -47,7 +47,7 @@ export const getAlmocosById = (req, res) => {
 export const getAlmocoImgById = (req, res) => {
     const { id } = req.query;
     
-    const sql = "select img from almoco where id = ?";
+    const sql = "select * from receitas where id = ? where idCategoria = 1";
 
     db.query(sql, [id], (err, data) => {
         if(err){
