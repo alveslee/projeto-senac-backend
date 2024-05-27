@@ -76,12 +76,12 @@ export const getUsersByEmail = (req, res) => {
         }
     });
 }
-export const getUsersByTelefone = (req, res) => {
-    const sql = "select * from usuario where telefone like ?";
+export const getUsersByidade = (req, res) => {
+    const sql = "select * from usuario where idade like ?";
 
-    const {telefone} = req.query;
+    const {idade} = req.query;
 
-    db.query(sql, [telefone], (err, data) => {
+    db.query(sql, [idade], (err, data) => {
         if(err){
             console.log("Erro ao processar a requisição.");
             return res.status(500).json(err);
@@ -91,12 +91,12 @@ export const getUsersByTelefone = (req, res) => {
         }
     });
 }
-export const getUsersByCpf = (req, res) => {
-    const sql = "select * from usuario where cpf like ?";
+export const getUsersBygenero = (req, res) => {
+    const sql = "select * from usuario where genero like ?";
 
-    const {cpf} = req.query;
+    const {genero} = req.query;
 
-    db.query(sql, [cpf], (err, data) => {
+    db.query(sql, [genero], (err, data) => {
         if(err){
             console.log("Erro ao processar a requisição.");
             return res.status(500).json(err);
@@ -108,11 +108,11 @@ export const getUsersByCpf = (req, res) => {
 }
 
 export const addUser = (req, res) => {
-    const sql = "insert into usuario (nome, senha, email, telefone, cpf) values (?, ?, ?, ?, ?)";
+    const sql = "insert into usuario (nome, senha, email, idade, genero) values (?, ?, ?, ?, ?)";
 
-    const {nome, senha, email, telefone, cpf} = req.body;
+    const {nome, senha, email, idade, genero} = req.body;
 
-    db.query(sql, [cpf, telefone, email, senha, nome], (err, data) => {
+    db.query(sql, [genero, idade, email, senha, nome], (err, data) => {
         if(err){
             console.log("Erro ao processar a requisição.");
             return res.status(500).json(err);
@@ -125,11 +125,11 @@ export const addUser = (req, res) => {
 
 
 export const updateUser = (req, res) => {
-    const sql = "update usuario set nome = ?, senha = ?, email = ?, telefone = ?, cpf = ? where id = ?";
+    const sql = "update usuario set nome = ?, senha = ?, email = ?, idade = ?, genero = ? where id = ?";
 
-    const { id, nome, senha, email, telefone, cpf } = req.body;
+    const { id, nome, senha, email, idade, genero } = req.body;
 
-    db.query(sql, [nome, senha, email, telefone, cpf, id], (err, data) => {
+    db.query(sql, [nome, senha, email, idade, genero, id], (err, data) => {
         if (err) {
             console.log("Erro ao processar a requisição.");
             return res.status(500).json(err);
@@ -152,115 +152,6 @@ export const deleteUser = (req, res) => {
         } else {
             console.log("Usuário removido com sucesso.");
             return res.status(201).json(data);
-        }
-    });
-}
-
-export const addReceita = (req, res) => {
-    const sql = "insert into receitas (titulo, ingredientes, instrucoes) values (?, ?, ?)";
-
-    const { titulo, ingredientes, instrucoes } = req.body;
-
-    db.query(sql, [titulo, ingredientes, instrucoes], (err, data) => {
-        if (err) {
-            console.log("Erro ao processar a requisição.");
-            return res.status(500).json(err);
-        } else {
-            console.log("Receita cadastrada com sucesso.");
-            return res.status(201).json(data);
-        }
-    });
-}
-
-export const updateReceita = (req, res) => {
-    const sql = "update receitas set titulo = ?, ingredientes = ?, instrucoes = ? where id = ?";
-
-    const { id, titulo, ingredientes, instrucoes } = req.body;
-
-    db.query(sql, [titulo, ingredientes, instrucoes, id], (err, data) => {
-        if (err) {
-            console.log("Erro ao processar a requisição.");
-            return res.status(500).json(err);
-        } else {
-            console.log("Dados da receita atualizados com sucesso.");
-            return res.status(201).json(data);
-        }
-    });
-}
-
-export const deleteReceita = (req, res) => {
-    const sql = "delete from receitas where id = ?";
-
-    const { id } = req.body;
-
-    db.query(sql, [id], (err, data) => {
-        if (err) {
-            console.log("Erro ao processar a requisição.");
-            return res.status(500).json(err);
-        } else {
-            console.log("Receita removida com sucesso.");
-            return res.status(201).json(data);
-        }
-    });
-}
-export const getReceitaById = (req, res) => {
-    const sql = "select * from receitas where id = ?";
-
-    const {id} = req.query;
-
-    db.query(sql, [id], (err, data) => {
-        if(err){
-            console.log("Erro ao processar a requisição.");
-            return res.status(500).json(err);
-        }else{
-            console.log("Dados obtidos com sucesso.");
-            return res.status(200).json(data);
-        }
-    });
-}
-export const getReceitaByTitulo = (req, res) => {
-    const sql = "select * from receitas where titulo = ?";
-
-    const {titulo} = req.query;
-
-    db.query(sql, [titulo], (err, data) => {
-        if(err){
-            console.log("Erro ao processar a requisição.");
-            return res.status(500).json(err);
-        }else{
-            console.log("Dados obtidos com sucesso.");
-            return res.status(200).json(data);
-        }
-    });
-}
-
-export const getReceitaByIngredientes = (req, res) => {
-    const sql = "select * from receitas where ingredientes like ?";
-
-    const {ingredientes} = req.query;
-
-    db.query(sql, [ingredientes], (err, data) => {
-        if(err){
-            console.log("Erro ao processar a requisição.");
-            return res.status(500).json(err);
-        }else{
-            console.log("Dados obtidos com sucesso.");
-            return res.status(200).json(data);
-        }
-    });
-}
-export const getReceitaByInstrucoes = (req, res) => {
-    const sql = "select * from receitas where instrucoes like ?";
-
-    const {instrucoes} = req.query;
-
-    db.query(sql, [instrucoes], (err, data) => {
-        if(err){
-            console.log("Erro ao processar a requisição.");
-            return res.status(500).json(err);
-        }else{
-            console.log("Dados obtidos com sucesso.");
-            return res.status(200).json(data);
         }
     });
 }

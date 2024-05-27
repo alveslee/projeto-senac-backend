@@ -1,60 +1,60 @@
 import { db } from '../database/db.js';
 
-export const getReceitas = (_, res) => {
-    const sql = "select * from receitas";
+export const getAlmoco = (_, res) => {
+    const sql = "select * from almoco";
 
     db.query(sql, (err, data) => {
         if(err){
             console.log("Erro ao processar a requisição.");
             return res.status(500).json(err);
         }else{
-            console.log("Dados das receitas obtidas com sucesso.");
+            console.log("Dados das almoco obtidas com sucesso.");
             return res.status(200).json(data);
         }
     });
 }
 
-export const getReceitasImgs = (_, res) => {
-    const sql = "select img from receitas";
+export const getAlmocoImgs = (_, res) => {
+    const sql = "select img from almoco";
 
     db.query(sql, (err, data) => {
         if(err){
             console.log("Erro ao processar a requisição.");
             return res.status(500).json(err);
         }else{
-            console.log("Dados das receitas obtidas com sucesso.");
+            console.log("Dados das almoco obtidas com sucesso.");
             return res.status(200).json(data);
         }
     });
 }
 
-export const getReceitassById = (req, res) => {
+export const getAlmocosById = (req, res) => {
     const { id } = req.query;
     
-    const sql = "select * from receitas where id = ?";
+    const sql = "select * from almoco where id = ?";
 
     db.query(sql, [id], (err, data) => {
         if(err){
             console.log("Erro ao processar a requisição.");
             return res.status(500).json(err);
         }else{
-            console.log("Dados das receitas obtidas com sucesso.");
+            console.log("Dados das almoco obtidas com sucesso.");
             return res.status(200).json(data);
         }
     });
 }
 
-export const getReceitasImgById = (req, res) => {
+export const getAlmocoImgById = (req, res) => {
     const { id } = req.query;
     
-    const sql = "select img from receitas where id = ?";
+    const sql = "select img from almoco where id = ?";
 
     db.query(sql, [id], (err, data) => {
         if(err){
             console.log("Erro ao processar a requisição.");
             return res.status(500).json(err);
         }else{
-            console.log("Dados das receitas obtidas com sucesso.");
+            console.log("Dados das almoco obtidas com sucesso.");
             return res.status(200).json(data);
         }
     });

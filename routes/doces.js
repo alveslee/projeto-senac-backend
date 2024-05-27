@@ -1,5 +1,5 @@
 import express from 'express';
-import { getDoces, getDocesById, getDoceImgById, getDocesImgs } from '../controllers/docesController.js'
+import { getDoceImgById, getDocesImgs } from '../controllers/docesController.js'
 
 const router = express.Router();
 

@@ -1,5 +1,5 @@
 import express from 'express';
-import { getReceitasImgById, getReceitasImgs } from '../controllers/receitaController.js';
+import { getCafeManhaImgById, getCafeManhaImgs } from '../controllers/cafeManhaControllers.js';
 
 const router = express.Router();
 
@@ -7,10 +7,10 @@ router.get("/", (req, res) => {
     const params = req.query;
 
     if (Object.keys(params).length === 0)
-        return getReceitasImgs(req, res);
+        return getCafeManhaImgs(req, res);
 
     if (params.id)
-        return getReceitasImgById(req, res);
+        return getCafeManhaImgById(req, res);
     // else if (params.nome)
     //     return getUsersByNome(req, res);
     // else if (params.titulo)
