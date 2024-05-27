@@ -15,7 +15,7 @@ export const getReceitas = (_, res) => {
 }
 
 export const getReceitasImgs = (_, res) => {
-    const sql = "select img from receitas";
+    const sql = "select * from receitas";
 
     db.query(sql, (err, data) => {
         if(err){
@@ -47,7 +47,7 @@ export const getReceitassById = (req, res) => {
 export const getReceitasImgById = (req, res) => {
     const { id } = req.query;
     
-    const sql = "select img from receitas where id = ?";
+    const sql = "select * from receitas where id = ?";
 
     db.query(sql, [id], (err, data) => {
         if(err){

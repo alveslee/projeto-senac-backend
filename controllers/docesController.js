@@ -47,7 +47,7 @@ export const getDocesById = (req, res) => {
 export const getDoceImgById = (req, res) => {
     const { id } = req.query;
     
-    const sql = "select img from doce where id = ?";
+    const sql = "select * from doce where id = ?";
 
     db.query(sql, [id], (err, data) => {
         if(err){
